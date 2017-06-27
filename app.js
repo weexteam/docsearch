@@ -26,9 +26,6 @@ app.get('/api/robot/search', function (req, res) {
       const hits = content.hits
       let resultStr = '<br>'
       hits.forEach((item, index) => {
-        if (index === 0 || item.hierarchy.lvl0 !== hits[index-1].hierarchy.lvl0) {
-          resultStr += item.hierarchy.lvl0 + ': <br>'
-        }
         let itemStr = ''
         for (var i = 1; i <= 6; i++) {
           if (item.hierarchy["lvl" + i]) {
@@ -38,7 +35,7 @@ app.get('/api/robot/search', function (req, res) {
         itemStr = itemStr.replace(/\s*>\s*$/, '')
         itemStr = itemStr.replace(/&lt;/g, '')
         itemStr = itemStr.replace(/&gt;/, '')
-        resultStr += '[' + itemStr + '](' + item.url + ') <br>'
+        resultStr += '[' + (index + 1) + '. ' + itemStr + '](' + item.url + ') <br>'
       })
       if (hits.length === 0) {
         resultStr = '> weex 找不到相关结果'
