@@ -3,7 +3,7 @@ const algoliasearch = require('algoliasearch')
 
 const app = express()
 const client = algoliasearch('2BE9FVK6FX', '4879a7b2e4f3a664bd3b219340657475')
-const index = client.initIndex('weex_cn')
+const index = client.initIndex('weex_io_cn')
 
 app.get('/api/robot/search', function (req, res) {
   const keyword = req.query.q ? req.query.q : ''
@@ -24,7 +24,7 @@ app.get('/api/robot/search', function (req, res) {
       }
 
       const hits = content.hits
-      let resultStr = '<br>'
+      let resultStr = ''
       hits.forEach((item, index) => {
         let itemStr = ''
         for (var i = 1; i <= 6; i++) {
@@ -35,7 +35,8 @@ app.get('/api/robot/search', function (req, res) {
         itemStr = itemStr.replace(/\s*>\s*$/, '')
         itemStr = itemStr.replace(/&lt;/g, '')
         itemStr = itemStr.replace(/&gt;/, '')
-        resultStr += '[' + (index + 1) + '. ' + itemStr + '](' + item.url + ') <br>'
+        itemUrl = item.url.replace(/#.*$/,'')
+        resultStr += '[' + (index + 1) + '. ' + itemStr + '](' + itemUrl + ') <br>'
       })
       if (hits.length === 0) {
         resultStr = '> weex 找不到相关结果'
