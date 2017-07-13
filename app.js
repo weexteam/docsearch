@@ -2,7 +2,7 @@ const express = require('express')
 const algoliasearch = require('algoliasearch')
 
 const app = express()
-const client = algoliasearch('2BE9FVK6FX', '4879a7b2e4f3a664bd3b219340657475')
+const client = algoliasearch('BH4D9OD16A', 'db5b2379e5ffbc33509585c35ccabba8')
 const index = client.initIndex('weex_io_cn')
 
 app.get('/api/robot/search', function (req, res) {
