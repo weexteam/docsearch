@@ -13,11 +13,11 @@ app.get('/api/robot/search', function (req, res) {
     }, function(err, content) {
       if (err) {
         res.json({
-          "success": false,
-          "errorCode": "100",
-          "errorMsg": "调用 algolia 失败",
+          "success": true,
+          "errorCode": "200",
+          "errorMsg": "",
           "fields": {
-              "搜索结果": ""
+              "搜索结果": "weex 不小心睡着了，能再重复您的问题吗？"
           }
         })
         return
@@ -53,11 +53,11 @@ app.get('/api/robot/search', function (req, res) {
     })
   } else {
     res.json({
-      "success": false,
-      "errorCode": "100",
-      "errorMsg": "搜索为空",
+      "success": true,
+      "errorCode": "200",
+      "errorMsg": "",
       "fields": {
-          "搜索结果": ""
+          "搜索结果": "weex 找不到相关结果"
       }
     })
   }
